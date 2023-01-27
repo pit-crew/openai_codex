@@ -5,10 +5,8 @@ import { Configuration, OpenAIApi } from 'openai'
 
 dotenv.config()
 
-const OPENAI_API_KEY="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";
-
 const configuration = new Configuration({
-  apiKey: OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
@@ -16,11 +14,10 @@ const openai = new OpenAIApi(configuration);
 const app = express()
 app.use(cors())
 app.use(express.json())
-const list = openai.listEngines();
 
 app.get('/', async (req, res) => {
   res.status(200).send({
-    message: list
+    message: 'Hello from CodeX!'
   })
 })
 
